@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {TodoList} from './TodoList';
+import {filterType, TodoList} from './TodoList';
 
 
 function App() {
@@ -13,16 +13,26 @@ function App() {
   
   let [filter, setFilter] = useState("All")
   
-  
   const removeTask = (id: number) => {
     todos = todos.filter(t => t.id != id)
-    console.log(todos)
     setTodos([...todos])
+  }
+  
+  const changeFilter = (value: filterType) => {
+    setFilter(value)
+  }
+  
+  let filteredTasks = todos
+  if(filter === "Active") {
+    filteredTasks = filteredTasks.filter(t => !t.isDone)
+  }
+  if(filter === "Finished") {
+    filteredTasks = filteredTasks.filter(t=> t.isDone)
   }
   
   return (
     <div className="App">
-      <TodoList title={'What to learn'} tasks={todos} taskRemover={removeTask}/>
+      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter}/>
     </div>
   );
 }

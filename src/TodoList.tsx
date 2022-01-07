@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 type propsType = {
   title: string
   tasks: Array<taskType>
-  taskRemover: (id: number)=> void
+  taskRemover: (id: number) => void
+  filteredTasks: (value: filterType) => void
 }
 
 type taskType = {
@@ -12,7 +13,7 @@ type taskType = {
   isDone: boolean
 }
 
-type filterType = "All" | "Active" | "Finished";
+export type filterType = "All" | "Active" | "Finished";
 
 export const TodoList = (props: propsType) => {
   return (
@@ -29,9 +30,9 @@ export const TodoList = (props: propsType) => {
 		)}
 	  </ul>
 	  <div>
-		<button>All</button>
-		<button>Active</button>
-		<button>Finished</button>
+		<button onClick={() => props.filteredTasks("All")}>All</button>
+		<button onClick={() => props.filteredTasks("Active")}>Active</button>
+		<button onClick={() => props.filteredTasks("Finished")}>Finished</button>
 	  </div>
 	</div>
   )
