@@ -11,6 +11,9 @@ function App() {
     {id: 3, title: 'React', isDone: true},
   ]);
   
+  let [filter, setFilter] = useState("All")
+  
+  
   const removeTask = (id: number) => {
     todos = todos.filter(t => t.id != id)
     console.log(todos)

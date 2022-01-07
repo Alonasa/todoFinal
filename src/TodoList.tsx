@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 type propsType = {
   title: string
@@ -12,7 +12,7 @@ type taskType = {
   isDone: boolean
 }
 
-
+type filterType = "All" | "Active" | "Finished";
 
 export const TodoList = (props: propsType) => {
   return (
