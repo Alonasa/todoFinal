@@ -12,8 +12,8 @@ const todos = [
 function App() {
   return (
     <div className="App">
-      <TodoList tasks={todos}/>
-      <TodoList tasks={todos}/>
+      <TodoList title={"What to learn"} tasks={todos}/>
+      <TodoList title={"Extra List"} tasks={todos}/>
     </div>
   );
 }

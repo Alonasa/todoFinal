@@ -1,6 +1,7 @@
 import React from 'react';
 
 type propsType = {
+  title: string
   tasks: Array<taskType>
 }
 
@@ -13,7 +14,7 @@ type taskType = {
 export const TodoList = (props: propsType) => {
   return (
 	<div className={'todo'}>
-	  <h3>What to do</h3>
+	  <h3>{props.title}</h3>
 	  <input type="text"/>
 	  <button>+</button>
 	  <ul>
