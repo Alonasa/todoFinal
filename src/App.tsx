@@ -20,7 +20,6 @@ function App() {
   return (
     <div className="App">
       <TodoList title={'What to learn'} tasks={todos} taskRemover={removeTask}/>
-      <TodoList title={'Extra List'} tasks={todos} taskRemover={removeTask}/>
     </div>
   );
 }
