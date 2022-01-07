@@ -34,3 +34,11 @@
   margin: 20px;
   text-align: left;
 }
+
+.error {
+  border: 2px solid red
+}
+
+.error__message {
+  color: red;
+}

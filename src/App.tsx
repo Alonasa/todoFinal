@@ -31,9 +31,15 @@ function App() {
     filteredTasks = filteredTasks.filter(t=> t.isDone)
   }
   
+  const addTask = (title: string) => {
+    let task = {id: v1(), title: title, isDone: false}
+    setTodos([...todos, task])
+    console.log("task ++++")
+  }
+  
   return (
     <div className="App">
-      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter}/>
+      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter} addTask={addTask}/>
     </div>
   );
 }
