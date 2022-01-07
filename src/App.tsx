@@ -33,7 +33,7 @@ function App() {
   
   const addTask = (title: string) => {
     let task = {id: v1(), title: title, isDone: false}
-    setTodos([...todos, task])
+    setTodos([task, ...todos])
     console.log("task ++++")
   }
   

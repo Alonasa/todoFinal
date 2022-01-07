@@ -28,35 +28,44 @@ export const TodoList = (props: propsType) => {
 	const trimmedTitle = title.trim();
 	if(trimmedTitle) {
 	  props.addTask(trimmedTitle)
-	  setTitle("")
-	}else {setError("***Title is required")}
+	  setTitle('')
+	} else {
+	  setError('***Title is required')
+	}
   }
   
   const onKeyHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    setError("")
-	if(e.key === "Enter") {
+	setError('')
+	if (e.key === 'Enter') {
 	  addTask()
 	}
+  }
+  
+  const onFilterHandler = (value: filterType) => {
+	props.filteredTasks(value)
   }
   
   return (
 	<div className={'todo'}>
 	  <h3>{props.title}</h3>
 	  <input type="text" value={title} onChange={onChangeHandler} onKeyPress={onKeyHandler}/>
-	  {error ? <span className="error__message">{error}</span> : ""}
+	  {error ? <span className="error__message">{error}</span> : ''}
 	  <button onClick={addTask}>+</button>
-	  <ul>
-		{props.tasks.map(t =>
-		  <li key={t.id}><input type="checkbox" checked={t.isDone}/>
+	  <ul>{
+		props.tasks.map(t => {
+		  const onClickHandler = () => {
+			props.taskRemover(t.id)
+		  }
+		  return <li key={t.id}><input type="checkbox" checked={t.isDone}/>
 			<span>{t.title}</span>
-			<button onClick={() => props.taskRemover(t.id)}>x</button>
+			<button onClick={onClickHandler}>x</button>
 		  </li>
-		)}
+		})}
 	  </ul>
 	  <div>
-		<button onClick={() => props.filteredTasks("All")}>All</button>
-		<button onClick={() => props.filteredTasks("Active")}>Active</button>
-		<button onClick={() => props.filteredTasks("Finished")}>Finished</button>
+		<button onClick={() => onFilterHandler('All')}>All</button>
+		<button onClick={() => onFilterHandler('Active')}>Active</button>
+		<button onClick={() => onFilterHandler('Finished')}>Finished</button>
 	  </div>
 	</div>
   )
