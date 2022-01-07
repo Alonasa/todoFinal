@@ -3,12 +3,12 @@ import React from 'react';
 type propsType = {
   title: string
   tasks: Array<taskType>
-  taskRemover: (id: number) => void
+  taskRemover: (id: string) => void
   filteredTasks: (value: filterType) => void
 }
 
 type taskType = {
-  id: number
+  id: string
   title: string
   isDone: boolean
 }
