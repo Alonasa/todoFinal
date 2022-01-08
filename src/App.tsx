@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {filterType, TodoList} from './TodoList';
+import {v1} from 'uuid';
+
 
 function App() {
+  let [todos, setTodos] = useState([
+    {id: v1(), title: 'English', isDone: false},
+    {id: v1(), title: 'Html', isDone: true},
+    {id: v1(), title: 'Css', isDone: true},
+    {id: v1(), title: 'React', isDone: true},
+  ]);
+  
+  let [filter, setFilter] = useState("All")
+  
+  const removeTask = (id: string) => {
+    todos = todos.filter(t => t.id != id)
+    setTodos([...todos])
+  }
+  
+  const changeFilter = (value: filterType) => {
+    setFilter(value)
+  }
+  
+  let filteredTasks = todos
+  if(filter === "Active") {
+    filteredTasks = filteredTasks.filter(t => !t.isDone)
+  }
+  if(filter === "Finished") {
+    filteredTasks = filteredTasks.filter(t=> t.isDone)
+  }
+  
+  const addTask = (title: string) => {
+    let task = {id: v1(), title: title, isDone: false}
+    setTodos([task, ...todos])
+    console.log("task ++++")
+  }
+  
+  const changeStatus = (tId: string, isDone: boolean) => {
+    let task = todos.find(t => t.id === tId)
+    if(task){
+      task.isDone = isDone
+    }
+    setTodos([...todos])
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter} addTask={addTask} filter={filter} changeHandler={changeStatus}/>
     </div>
   );
 }
 
-export default App;
+export default App
