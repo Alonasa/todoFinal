@@ -51,6 +51,9 @@ export const TodoList = (props: propsType) => {
     return props.filter === value ? "filter__selected" : " "
   }
   
+  const taskStyleHandler = (t: boolean) => {
+	return t ? "task__checked" : " "
+  }
   
   return (
 	<div className={'todo'}>
@@ -64,9 +67,9 @@ export const TodoList = (props: propsType) => {
 			props.taskRemover(t.id)
 		  }
 		  const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-			props.changeHandler(t.id, e.currentTarget.checked)
+		    props.changeHandler(t.id, e.currentTarget.checked)
 		  }
-		  return <li key={t.id}>
+		  return <li key={t.id} className={taskStyleHandler(t.isDone)}>
 			<input type="checkbox" checked={t.isDone} onChange={changeStatusHandler}/>
 			<span>{t.title}</span>
 			<button onClick={onClickHandler}>x</button>
