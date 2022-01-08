@@ -37,9 +37,17 @@ function App() {
     console.log("task ++++")
   }
   
+  const changeStatus = (tId: string, isDone: boolean) => {
+    let task = todos.find(t => t.id === tId)
+    if(task){
+      task.isDone = isDone
+    }
+    setTodos([...todos])
+  }
+  
   return (
     <div className="App">
-      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter} addTask={addTask} filter={filter}/>
+      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter} addTask={addTask} filter={filter} changeHandler={changeStatus}/>
     </div>
   );
 }
