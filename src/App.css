@@ -42,3 +42,8 @@
 .error__message {
   color: red;
 }
+
+.filter__selected {
+  background-color: darkcyan;
+  color: wheat;
+}

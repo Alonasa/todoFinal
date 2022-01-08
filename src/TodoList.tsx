@@ -6,6 +6,7 @@ type propsType = {
   taskRemover: (id: string) => void
   filteredTasks: (value: filterType) => void
   addTask: (title: string) => void
+  filter: string
 }
 
 type taskType = {
@@ -45,6 +46,10 @@ export const TodoList = (props: propsType) => {
 	props.filteredTasks(value)
   }
   
+  const filterStylesHandler = (value: filterType) => {
+    return props.filter === value ? "filter__selected" : " "
+  }
+  
   return (
 	<div className={'todo'}>
 	  <h3>{props.title}</h3>
@@ -63,9 +68,9 @@ export const TodoList = (props: propsType) => {
 		})}
 	  </ul>
 	  <div>
-		<button onClick={() => onFilterHandler('All')}>All</button>
-		<button onClick={() => onFilterHandler('Active')}>Active</button>
-		<button onClick={() => onFilterHandler('Finished')}>Finished</button>
+		<button className={filterStylesHandler('All')} onClick={() => onFilterHandler('All')}>All</button>
+		<button className={filterStylesHandler('Active')} onClick={() => onFilterHandler('Active')}>Active</button>
+		<button className={filterStylesHandler('Finished')} onClick={() => onFilterHandler('Finished')}>Finished</button>
 	  </div>
 	</div>
   )

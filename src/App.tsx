@@ -39,7 +39,7 @@ function App() {
   
   return (
     <div className="App">
-      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter} addTask={addTask}/>
+      <TodoList title={'What to learn'} tasks={filteredTasks} taskRemover={removeTask} filteredTasks={changeFilter} addTask={addTask} filter={filter}/>
     </div>
   );
 }
