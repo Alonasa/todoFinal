@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {v1} from 'uuid';
 
 type propsType = {
   title: string
@@ -17,6 +18,12 @@ type taskType = {
 }
 
 export type filterType = "All" | "Active" | "Finished";
+
+export type todoListsType = {
+  id: string
+  title: string
+  filter: filterType
+}
 
 
 export const TodoList = (props: propsType) => {
