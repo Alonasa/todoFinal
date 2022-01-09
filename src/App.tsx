@@ -53,7 +53,9 @@ function App() {
     <div className="App">
       {todoLists.map(tl => {
         return (
-          <TodoList title={tl.title}
+          <TodoList key={tl.id}
+                    id={tl.id}
+                    title={tl.title}
                     tasks={filteredTasks}
                     taskRemover={removeTask}
                     filteredTasks={changeFilter}

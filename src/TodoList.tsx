@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {v1} from 'uuid';
 
 type propsType = {
+  id: string
   title: string
   tasks: Array<taskType>
   taskRemover: (id: string) => void
