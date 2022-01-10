@@ -36,9 +36,9 @@ function App() {
     setTodolists(todoLists.map(t => t.id === id ? {...t, filter: value} : t))
   }
   
-  const addTask = (title: string) => {
-    // let task = {id: v1(), title: title, isDone: false}
-    // setTodos([task, ...todos])
+  const addTask = (tlId: string, title: string) => {
+    let task = {id: v1(), title: title, isDone: false}
+    setTodos({...todos, [tlId]:[task, ...todos[tlId]]})
   }
   
   const changeStatus = (tId: string, isDone: boolean) => {
