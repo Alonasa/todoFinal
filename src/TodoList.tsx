@@ -4,7 +4,7 @@ type propsType = {
   id: string
   title: string
   tasks: Array<taskType>
-  taskRemover: (id: string) => void
+  taskRemover: (tlId: string,id: string) => void
   filteredTasks: (id: string, value: filterType) => void
   addTask: (title: string) => void
   filter: string
@@ -72,7 +72,7 @@ export const TodoList = (props: propsType) => {
 	  <ul>{
 		props.tasks.map(t => {
 		  const onClickHandler = () => {
-			props.taskRemover(t.id)
+			props.taskRemover(props.id,t.id)
 		  }
 		  const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		    props.changeHandler(t.id, e.currentTarget.checked)
