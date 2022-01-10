@@ -38,15 +38,16 @@ function App() {
   
   const addTask = (tlId: string, title: string) => {
     let task = {id: v1(), title: title, isDone: false}
-    setTodos({...todos, [tlId]:[task, ...todos[tlId]]})
+    setTodos({...todos, [tlId]: [task, ...todos[tlId]]})
   }
   
-  const changeStatus = (tId: string, isDone: boolean) => {
-    // let task = todos.find(t => t.id === tId)
-    // if (task) {
-    //   task.isDone = isDone
-    // }
-    // setTodos([...todos])
+  const changeStatus = (tlId: string, tId: string, isDone: boolean) => {
+    let task = todos[tlId].find(t => t.id === tId)
+    console.log(task)
+    if (task) {
+      task.isDone = isDone
+    }
+    setTodos({...todos, [tlId]: todos[tlId]})
   }
   
   return (

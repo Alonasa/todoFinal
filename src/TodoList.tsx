@@ -8,7 +8,7 @@ type propsType = {
   filteredTasks: (id: string, value: filterType) => void
   addTask: (tlId: string, title: string) => void
   filter: string
-  changeHandler: (tId: string, isDone: boolean) => void
+  changeHandler: (tlId: string, tId: string, isDone: boolean) => void
 }
 
 type taskType = {
@@ -75,7 +75,7 @@ export const TodoList = (props: propsType) => {
 			props.taskRemover(props.id,t.id)
 		  }
 		  const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		    props.changeHandler(t.id, e.currentTarget.checked)
+		    props.changeHandler(props.id, t.id, e.currentTarget.checked)
 		  }
 		  return <li key={t.id} className={taskStyleHandler(t.isDone)}>
 			<input type="checkbox" checked={t.isDone}
