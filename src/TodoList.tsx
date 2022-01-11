@@ -9,6 +9,7 @@ type propsType = {
   addTask: (tlId: string, title: string) => void
   filter: string
   changeHandler: (tlId: string, tId: string, isDone: boolean) => void
+  removeTodolist: (tlId: string)=> void
 }
 
 type taskType = {
@@ -23,6 +24,10 @@ export type todoListsType = {
   id: string
   title: string
   filter: filterType
+}
+
+export type tasksStateType = {
+  [key: string]: Array<taskType>
 }
 
 export const TodoList = (props: propsType) => {
@@ -54,7 +59,7 @@ export const TodoList = (props: propsType) => {
   }
   
   const filterStylesHandler = (value: filterType) => {
-    return props.filter === value ? 'filter__selected' : ' '
+	return props.filter === value ? 'filter__selected' : ' '
   }
   
   const taskStyleHandler = (t: boolean) => {
@@ -64,6 +69,7 @@ export const TodoList = (props: propsType) => {
   return (
 	<div className={'todo'}>
 	  <h3>{props.title}</h3>
+	  <button onClick={()=>props.removeTodolist(props.id)}>x</button>
 	  <input type="text" value={title}
 			 onChange={onChangeHandler}
 			 onKeyPress={onKeyHandler}/>
@@ -72,7 +78,7 @@ export const TodoList = (props: propsType) => {
 	  <ul>{
 		props.tasks.map(t => {
 		  const onClickHandler = () => {
-			props.taskRemover(props.id,t.id)
+			props.taskRemover(props.id, t.id)
 		  }
 		  const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		    props.changeHandler(props.id, t.id, e.currentTarget.checked)
