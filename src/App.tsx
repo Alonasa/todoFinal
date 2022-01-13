@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {filterType, tasksStateType, TodoList, todoListsType} from './TodoList';
 import {v1} from 'uuid';
+import AddItemForm from './AddItemForm';
 
 
 function App() {
@@ -53,8 +54,13 @@ function App() {
     })
   }
   
+  const addTodolistHandler = () => {
+    console.log("Hi")
+  }
+  
   return (
     <div className="App">
+      <AddItemForm addTask={addTodolistHandler}/>
       {todoLists.map(tl => {
         let filteredTasks = todos[tl.id]
         if (tl.filter === 'Active') {
