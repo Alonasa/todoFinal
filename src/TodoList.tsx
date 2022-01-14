@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import AddItemForm from './AddItemForm';
 
 type propsType = {
@@ -50,8 +50,10 @@ export const TodoList = (props: propsType) => {
   
   return (
 	<div className={'todo'}>
-	  <h3>{props.title}</h3>
-	  <button onClick={()=>props.removeTodolist(props.id)}>x</button>
+	  <div className={'todo__header'}>
+		<h3>{props.title}</h3>
+		<button onClick={() => props.removeTodolist(props.id)}>x</button>
+	  </div>
 	  <AddItemForm addTask={AddTaskHandler}/>
 	  <ul>{
 		props.tasks.map(t => {
@@ -59,7 +61,7 @@ export const TodoList = (props: propsType) => {
 			props.taskRemover(props.id, t.id)
 		  }
 		  const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		    props.changeHandler(props.id, t.id, e.currentTarget.checked)
+			props.changeHandler(props.id, t.id, e.currentTarget.checked)
 		  }
 		  return <li key={t.id} className={taskStyleHandler(t.isDone)}>
 			<input type="checkbox" checked={t.isDone}

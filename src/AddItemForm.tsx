@@ -29,7 +29,7 @@ const AddItemForm = (props: propsType) => {
 	setTitle(e.currentTarget.value)
   }
   return (
-	<div>
+	<div className={"addInput"}>
 	  <input type="text" value={title}
 			 onChange={onChangeHandler}
 			 onKeyPress={onKeyHandler}/>
