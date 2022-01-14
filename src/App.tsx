@@ -54,8 +54,11 @@ function App() {
     })
   }
   
-  const addTodolistHandler = () => {
-    console.log("Hi")
+  const addTodolistHandler = (title: string) => {
+    const todolistId = v1()
+    let todolist:todoListsType = {id: todolistId, title: title, filter: 'All'}
+    setTodolists([...todoLists,todolist])
+    setTodos({...todos, [todolistId]: []})
   }
   
   return (
