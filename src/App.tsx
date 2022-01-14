@@ -56,9 +56,20 @@ function App() {
   
   const addTodolistHandler = (title: string) => {
     const todolistId = v1()
-    let todolist:todoListsType = {id: todolistId, title: title, filter: 'All'}
-    setTodolists([...todoLists,todolist])
+    let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
+    setTodolists([...todoLists, todolist])
     setTodos({...todos, [todolistId]: []})
+  }
+  
+  const updateTask = (id: string, tlId: string, title: string) => {
+    setTodos({
+      ...todos,
+      [tlId]: todos[tlId].map(t => t.id === id ? {...t, title: title} : t)
+    })
+  }
+  
+  const updateTodolist = (tlId: string, title: string) => {
+    setTodolists(todoLists.map(m => m.id === tlId ? {...m, title: title} : m))
   }
   
   return (
@@ -83,6 +94,8 @@ function App() {
                     filter={tl.filter}
                     changeHandler={changeStatus}
                     removeTodolist={removeTodolist}
+                    updateTask={updateTask}
+                    updateTodolist={updateTodolist}
           />
         )
       })}
