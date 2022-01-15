@@ -1,17 +1,7 @@
 .App {
   text-align: center;
   display: flex;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  flex-wrap: wrap;
 }
 
 .App-header {
@@ -35,6 +25,12 @@
   text-align: left;
 }
 
+.todo__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
 .error {
   border: 2px solid red
 }
@@ -52,4 +48,10 @@
   opacity: 0.6;
   text-decoration: line-through darkcyan;
   font-style: italic;
+}
+
+.addInput {
+  padding: 15px 0;
+  display: flex;
+  align-items: flex-start;
 }
