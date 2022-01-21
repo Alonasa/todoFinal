@@ -12,6 +12,7 @@ import {
 } from './TodolistsReducer';
 import {
   addTaskAC,
+  addTaskTodolistAC,
   changeStatusAC,
   removeTaskAC,
   TaskReducer
@@ -67,7 +68,7 @@ function App() {
     const todolistId = v1()
     let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
     todolistsDispatch(addTodolistAC(todolist))
-    // setTask({...task, [todolistId]: []})
+    taskDispatch(addTaskTodolistAC(todolistId))
   }
   
   const updateTask = (id: string, tlId: string, title: string) => {
