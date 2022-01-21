@@ -4,9 +4,10 @@ import {filterType, tasksStateType, TodoList, todoListsType} from './TodoList';
 import {v1} from 'uuid';
 import AddItemForm from './AddItemForm';
 import {
+  addTodolistAC,
   changeFilterAC,
   removeTodolistAC,
-  TodolistsReducer
+  TodolistsReducer, updateTodolistAC
 } from './TodolistsReducer';
 
 
@@ -59,10 +60,12 @@ function App() {
     })
   }
   
+ 
+  
   const addTodolistHandler = (title: string) => {
     const todolistId = v1()
-    let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
-   // setTodolists([...todoLists, todolist])
+   // // setTodolists([...todoLists, todolist])
+   // todolistsDispatch(addTodolistAC(title))
     setTodos({...todos, [todolistId]: []})
   }
   
@@ -74,7 +77,7 @@ function App() {
   }
   
   const updateTodolist = (tlId: string, title: string) => {
-   // setTodolists(todoLists.map(m => m.id === tlId ? {...m, title: title} : m))
+    todolistsDispatch(updateTodolistAC(tlId, title))
   }
   
   return (
