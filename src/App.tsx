@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import {filterType, tasksStateType, TodoList, todoListsType} from './TodoList';
 import {v1} from 'uuid';
 import AddItemForm from './AddItemForm';
+import {changeFilterAC, TodolistsReducer} from './TodolistsReducer';
 
 
 function App() {
   let todolistID1 = v1();
   let todolistID2 = v1();
   
-  let [todoLists, setTodolists] = useState<Array<todoListsType>>([
+  let [todoLists, todolistsDispatch] = useReducer(TodolistsReducer,[
     {id: todolistID1, title: 'What to do', filter: 'All'},
     {id: todolistID2, title: 'What to Buy', filter: 'All'},
   ])
@@ -34,7 +35,7 @@ function App() {
   }
   
   const changeFilter = (id: string, value: filterType) => {
-    setTodolists(todoLists.map(t => t.id === id ? {...t, filter: value} : t))
+    todolistsDispatch(changeFilterAC(id, value))
   }
   
   const addTask = (tlId: string, title: string) => {
@@ -43,7 +44,7 @@ function App() {
   }
   
   const removeTodolist = (tlId: string) => {
-    setTodolists(todoLists.filter(tl=> tl.id !== tlId))
+   // setTodolists(todoLists.filter(tl=> tl.id !== tlId))
     delete todos[tlId]
   }
   
@@ -57,7 +58,7 @@ function App() {
   const addTodolistHandler = (title: string) => {
     const todolistId = v1()
     let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
-    setTodolists([...todoLists, todolist])
+   // setTodolists([...todoLists, todolist])
     setTodos({...todos, [todolistId]: []})
   }
   
@@ -69,7 +70,7 @@ function App() {
   }
   
   const updateTodolist = (tlId: string, title: string) => {
-    setTodolists(todoLists.map(m => m.id === tlId ? {...m, title: title} : m))
+   // setTodolists(todoLists.map(m => m.id === tlId ? {...m, title: title} : m))
   }
   
   return (
