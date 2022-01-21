@@ -10,6 +10,7 @@ import {
   TodolistsReducer,
   updateTodolistAC
 } from './TodolistsReducer';
+import {removeTaskAC, TaskReducer} from './TaskReducer';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     {id: todolistID2, title: 'What to Buy', filter: 'All'},
   ])
   
-  let [task, setTask] = useState<tasksStateType>({
+  let [task, taskDispatch] = useReducer(TaskReducer,{
     [todolistID1]: [
       {id: v1(), title: 'English', isDone: false},
       {id: v1(), title: 'Html', isDone: true},
@@ -37,7 +38,7 @@ function App() {
   });
   
   const removeTask = (tlId: string, id: string) => {
-    setTask({...task, [tlId]: task[tlId].filter(t => t.id != id)})
+    taskDispatch(removeTaskAC(tlId,id))
   }
   
   const changeFilter = (id: string, value: filterType) => {
@@ -46,7 +47,7 @@ function App() {
   
   const addTask = (tlId: string, title: string) => {
     let newTask = {id: v1(), title: title, isDone: false}
-    setTask({...task, [tlId]: [newTask, ...task[tlId]]})
+   // setTask({...task, [tlId]: [newTask, ...task[tlId]]})
   }
   
   const removeTodolist = (tlId: string) => {
@@ -55,24 +56,24 @@ function App() {
   }
   
   const changeStatus = (tlId: string, tId: string, isDone: boolean) => {
-    setTask({
-      ...task,
-      [tlId]: task[tlId].map(t => t.id === tId ? {...t, isDone} : t)
-    })
+    // setTask({
+    //   ...task,
+    //   [tlId]: task[tlId].map(t => t.id === tId ? {...t, isDone} : t)
+    // })
   }
   
   const addTodolistHandler = (title: string) => {
     const todolistId = v1()
     let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
     todolistsDispatch(addTodolistAC(todolist))
-    setTask({...task, [todolistId]: []})
+   // setTask({...task, [todolistId]: []})
   }
   
   const updateTask = (id: string, tlId: string, title: string) => {
-    setTask({
-      ...task,
-      [tlId]: task[tlId].map(t => t.id === id ? {...t, title: title} : t)
-    })
+    // setTask({
+    //   ...task,
+    //   [tlId]: task[tlId].map(t => t.id === id ? {...t, title: title} : t)
+    // })
   }
   
   const updateTodolist = (tlId: string, title: string) => {
