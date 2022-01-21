@@ -7,7 +7,8 @@ import {
   addTodolistAC,
   changeFilterAC,
   removeTodolistAC,
-  TodolistsReducer, updateTodolistAC
+  TodolistsReducer,
+  updateTodolistAC
 } from './TodolistsReducer';
 
 
@@ -60,12 +61,10 @@ function App() {
     })
   }
   
- 
-  
   const addTodolistHandler = (title: string) => {
-    const todolistId = v1()
-   // // setTodolists([...todoLists, todolist])
-   // todolistsDispatch(addTodolistAC(title))
+    const todolistId = v1();
+    let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
+    todolistsDispatch(addTodolistAC(todolist))
     setTodos({...todos, [todolistId]: []})
   }
   
