@@ -32,8 +32,8 @@ const AddItemForm = (props: propsType) => {
 	setTitle(e.currentTarget.value)
   }
   return (
-	  <Box mt={10} mb={10}>
-		<Grid container spacing={2} direction={'row'} wrap={"wrap"}>
+	  <Box mt={10} mb={10} width={250}>
+		<Grid container xs={12} spacing={2} direction={'row'} wrap={"wrap"}>
 		  <Grid container direction={'row'} wrap={'nowrap'}>
 			<Input
 			  value={title}
