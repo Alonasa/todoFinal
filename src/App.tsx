@@ -15,7 +15,8 @@ import {
   addTaskTodolistAC,
   changeStatusAC,
   removeTaskAC,
-  TaskReducer
+  TaskReducer,
+  updateTaskAC
 } from './TaskReducer';
 
 
@@ -72,10 +73,7 @@ function App() {
   }
   
   const updateTask = (id: string, tlId: string, title: string) => {
-    // setTask({
-    //   ...task,
-    //   [tlId]: task[tlId].map(t => t.id === id ? {...t, title: title} : t)
-    // })
+    taskDispatch(updateTaskAC(id, tlId, title))
   }
   
   const updateTodolist = (tlId: string, title: string) => {
