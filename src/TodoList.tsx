@@ -74,7 +74,7 @@ export const TodoList = (props: propsType) => {
   
   return (
 	<Box width={250}>
-	  <Grid container direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'center'}>
+	  <Grid container xs={12} direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'center'}>
 		<h3>
 		  <EditableSpan title={props.title}
 						callback={(title) => updateTaskHandler}/>
