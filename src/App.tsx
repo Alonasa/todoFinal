@@ -86,7 +86,7 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Box m={15}>
         <Grid container className="App" direction={'row'} wrap={'wrap'}
-              align-items={'center'}>
+              align-items={'center'} justifyContent={'space-around'}>
           <AddItemForm addTask={addTodolistHandler}/>
           {todoLists.map(tl => {
             let filteredTasks = task[tl.id]

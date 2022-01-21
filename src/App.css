@@ -13,17 +13,20 @@
   color: #61dafb;
 }
 
-/*.tod {*/
-/*  width: 250px;*/
-/*  margin: 20px;*/
-/*  text-align: left;*/
-/*}*/
+.li-container {
+  width: 250px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
 
-/*.todo__header {*/
-/*  display: flex;*/
-/*  align-items: baseline;*/
-/*  justify-content: space-between;*/
-/*}*/
+.li-container li {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .error {
   border: 2px solid red

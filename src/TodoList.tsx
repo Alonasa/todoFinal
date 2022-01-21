@@ -1,7 +1,8 @@
-import {Box, Button, Grid} from '@material-ui/core';
+import {Box, Button, Grid, IconButton} from '@material-ui/core';
 import React, {ChangeEvent} from 'react';
 import AddItemForm from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
+import {DeleteOutline, DeleteTwoTone} from '@material-ui/icons';
 
 type propsType = {
   id: string
@@ -66,15 +67,17 @@ export const TodoList = (props: propsType) => {
   
   return (
 	<Box width={250}>
-	  <Grid container direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'baseline'}>
+	  <Grid container direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'center'}>
 		<h3>
 		  <EditableSpan title={props.title}
 						callback={(title) => updateTaskHandler}/>
 		</h3>
-		<Button onClick={removeTodolistHandler} color='secondary'>x</Button>
+		<IconButton onClick={removeTodolistHandler} color='secondary' size={'small'}>
+		  <DeleteOutline/>
+		</IconButton>
 	  </Grid>
 	  <AddItemForm addTask={addTaskHandler}/>
-	  <ul>{
+	  <ul className={'li-container'}>{
 		props.tasks.map(t => {
 		  const onClickHandler = () => {
 			props.taskRemover(props.id, t.id)
