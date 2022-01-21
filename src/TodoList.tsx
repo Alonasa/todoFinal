@@ -1,4 +1,11 @@
-import {Box, Button, Grid, IconButton} from '@material-ui/core';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Grid,
+  IconButton,
+  Input
+} from '@material-ui/core';
 import React, {ChangeEvent} from 'react';
 import AddItemForm from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
@@ -86,11 +93,13 @@ export const TodoList = (props: propsType) => {
 			props.changeHandler(props.id, t.id, e.currentTarget.checked)
 		  }
 		  return <li key={t.id} className={taskStyleHandler(t.isDone)}>
-			<input type="checkbox" checked={t.isDone}
-				   onChange={changeStatusHandler}/>
+			<Checkbox checked={t.isDone}
+					  onChange={changeStatusHandler}  />
 			<EditableSpan title={t.title}
 						  callback={(title) => updateTodolistHandler(title)}/>
-			<button onClick={onClickHandler}>x</button>
+			<IconButton onClick={onClickHandler} color='secondary' size={'small'}>
+			  <DeleteOutline/>
+			</IconButton>
 		  </li>
 		})}
 	  </ul>
