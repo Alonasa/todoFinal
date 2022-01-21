@@ -3,7 +3,11 @@ import './App.css';
 import {filterType, tasksStateType, TodoList, todoListsType} from './TodoList';
 import {v1} from 'uuid';
 import AddItemForm from './AddItemForm';
-import {changeFilterAC, TodolistsReducer} from './TodolistsReducer';
+import {
+  changeFilterAC,
+  removeTodolistAC,
+  TodolistsReducer
+} from './TodolistsReducer';
 
 
 function App() {
@@ -44,7 +48,7 @@ function App() {
   }
   
   const removeTodolist = (tlId: string) => {
-   // setTodolists(todoLists.filter(tl=> tl.id !== tlId))
+    todolistsDispatch(removeTodolistAC(tlId))
     delete todos[tlId]
   }
   
