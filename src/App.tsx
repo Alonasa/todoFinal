@@ -10,7 +10,7 @@ import {
   TodolistsReducer,
   updateTodolistAC
 } from './TodolistsReducer';
-import {removeTaskAC, TaskReducer} from './TaskReducer';
+import {addTaskAC, removeTaskAC, TaskReducer} from './TaskReducer';
 
 
 function App() {
@@ -46,8 +46,7 @@ function App() {
   }
   
   const addTask = (tlId: string, title: string) => {
-    let newTask = {id: v1(), title: title, isDone: false}
-   // setTask({...task, [tlId]: [newTask, ...task[tlId]]})
+    taskDispatch(addTaskAC(tlId, title))
   }
   
   const removeTodolist = (tlId: string) => {
