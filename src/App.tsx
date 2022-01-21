@@ -1,6 +1,6 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
-import {filterType, tasksStateType, TodoList, todoListsType} from './TodoList';
+import {filterType, TodoList, todoListsType} from './TodoList';
 import {v1} from 'uuid';
 import AddItemForm from './AddItemForm';
 import {
@@ -10,19 +10,24 @@ import {
   TodolistsReducer,
   updateTodolistAC
 } from './TodolistsReducer';
-import {addTaskAC, removeTaskAC, TaskReducer} from './TaskReducer';
+import {
+  addTaskAC,
+  changeStatusAC,
+  removeTaskAC,
+  TaskReducer
+} from './TaskReducer';
 
 
 function App() {
   let todolistID1 = v1();
   let todolistID2 = v1();
   
-  let [todoLists, todolistsDispatch] = useReducer(TodolistsReducer,[
+  let [todoLists, todolistsDispatch] = useReducer(TodolistsReducer, [
     {id: todolistID1, title: 'What to do', filter: 'All'},
     {id: todolistID2, title: 'What to Buy', filter: 'All'},
   ])
   
-  let [task, taskDispatch] = useReducer(TaskReducer,{
+  let [task, taskDispatch] = useReducer(TaskReducer, {
     [todolistID1]: [
       {id: v1(), title: 'English', isDone: false},
       {id: v1(), title: 'Html', isDone: true},
@@ -38,7 +43,7 @@ function App() {
   });
   
   const removeTask = (tlId: string, id: string) => {
-    taskDispatch(removeTaskAC(tlId,id))
+    taskDispatch(removeTaskAC(tlId, id))
   }
   
   const changeFilter = (id: string, value: filterType) => {
@@ -55,17 +60,14 @@ function App() {
   }
   
   const changeStatus = (tlId: string, tId: string, isDone: boolean) => {
-    // setTask({
-    //   ...task,
-    //   [tlId]: task[tlId].map(t => t.id === tId ? {...t, isDone} : t)
-    // })
+    taskDispatch(changeStatusAC(tlId, tId, isDone))
   }
   
   const addTodolistHandler = (title: string) => {
     const todolistId = v1()
     let todolist: todoListsType = {id: todolistId, title: title, filter: 'All'}
     todolistsDispatch(addTodolistAC(todolist))
-   // setTask({...task, [todolistId]: []})
+    // setTask({...task, [todolistId]: []})
   }
   
   const updateTask = (id: string, tlId: string, title: string) => {
