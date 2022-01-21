@@ -28,42 +28,26 @@ const AddItemForm = (props: propsType) => {
 	}
   }
   
-  const styles = (theme: any) => ({
-	textField: {
-	  width: '90%',
-	  marginLeft: 'auto',
-	  marginRight: 'auto',
-	  color: 'white',
-	  paddingBottom: 0,
-	  marginTop: 0,
-	  fontWeight: 500
-	},
-  });
-  
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 	setTitle(e.currentTarget.value)
   }
   return (
-	<MuiThemeProvider theme={theme}>
-	  <Box mt={10} mb={10} width={300}>
-		<Grid container spacing={0} direction={'row'} wrap="wrap" alignItems="flex-end">
-		  <Grid item>
+	  <Box mt={10} mb={10}>
+		<Grid container spacing={2} direction={'row'} wrap={"wrap"}>
+		  <Grid container direction={'row'} wrap={'nowrap'}>
 			<Input
 			  value={title}
 			  onChange={onChangeHandler}
 			  onKeyPress={onKeyHandler} id="outlined-basic"
 			  placeholder="Add task name here"
-			  color="secondary" type="text"
+			  color="secondary" type="text" autoComplete={'off'}
 			/>
-		  </Grid>
-		  <Grid>
 			<Button variant="contained" color="secondary"
 					onClick={addTask}>+</Button>
 		  </Grid>
 		  {error ? <span className="error__message">{error}</span> : ''}
 		</Grid>
 	  </Box>
-	</MuiThemeProvider>
   );
 };
 

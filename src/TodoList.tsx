@@ -1,3 +1,4 @@
+import {Box, Button, Grid} from '@material-ui/core';
 import React, {ChangeEvent} from 'react';
 import AddItemForm from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
@@ -59,15 +60,19 @@ export const TodoList = (props: propsType) => {
 	props.updateTodolist(props.id, title)
   }
   
+  const removeTodolistHandler = () => {
+	props.removeTodolist(props.id)
+  }
+  
   return (
-	<div className={'todo'}>
-	  <div className={'todo__header'}>
+	<Box width={250}>
+	  <Grid container direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'baseline'}>
 		<h3>
 		  <EditableSpan title={props.title}
 						callback={(title) => updateTaskHandler}/>
 		</h3>
-		<button onClick={() => props.removeTodolist(props.id)}>x</button>
-	  </div>
+		<Button onClick={removeTodolistHandler} color='secondary'>x</Button>
+	  </Grid>
 	  <AddItemForm addTask={addTaskHandler}/>
 	  <ul>{
 		props.tasks.map(t => {
@@ -97,6 +102,6 @@ export const TodoList = (props: propsType) => {
 				onClick={() => onFilterHandler('Finished')}>Finished
 		</button>
 	  </div>
-	</div>
+	</Box>
   )
 }
