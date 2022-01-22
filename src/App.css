@@ -14,11 +14,7 @@
 }
 
 .li-container {
-  width: 250px;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  list-style: none;
 }
 
 .li-container li {
@@ -27,14 +23,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.error {
-  border: 2px solid #0D6F6FFF
-}
-
-.error__message {
-  color: #0D6F6FFF;
 }
 
 .filter__selected {
