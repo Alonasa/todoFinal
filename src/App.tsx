@@ -109,11 +109,9 @@ function App() {
                         removeTodolist={removeTodolist}
                         updateTask={updateTask}
                         updateTodolist={updateTodolist}
-              />
-            )
+              />)
           })}
         </Grid>
-    
       </Box>
     </MuiThemeProvider>
   );

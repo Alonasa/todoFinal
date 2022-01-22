@@ -1,6 +1,6 @@
 import {
   Box,
-  Button,
+  Button, ButtonGroup,
   Checkbox,
   Grid,
   IconButton,
@@ -49,7 +49,7 @@ export const TodoList = (props: propsType) => {
   }
   
   const filterStylesHandler = (value: filterType) => {
-	return props.filter === value ? 'filter__selected' : ' '
+	return props.filter === value ? 'contained' : 'outlined'
   }
   
   const taskStyleHandler = (t: boolean) => {
@@ -104,15 +104,16 @@ export const TodoList = (props: propsType) => {
 		})}
 	  </ul>
 	  <div>
-		<button className={filterStylesHandler('All')}
-				onClick={() => onFilterHandler('All')}>All
-		</button>
-		<button className={filterStylesHandler('Active')}
-				onClick={() => onFilterHandler('Active')}>Active
-		</button>
-		<button className={filterStylesHandler('Finished')}
-				onClick={() => onFilterHandler('Finished')}>Finished
-		</button>
+		<ButtonGroup>
+		  <Button variant={filterStylesHandler('All')}
+				  onClick={() => onFilterHandler('All')} color={'secondary'}>All</Button>
+		  <Button variant={filterStylesHandler('Active')} className={filterStylesHandler('Active')}
+				  onClick={() => onFilterHandler('Active')} color={'secondary'}>Active
+		  </Button>
+		  <Button variant={filterStylesHandler('Finished')} className={filterStylesHandler('Finished')}
+				  onClick={() => onFilterHandler('Finished')} color={'secondary'}>Finished
+		  </Button>
+		</ButtonGroup>
 	  </div>
 	</Box>
   )
