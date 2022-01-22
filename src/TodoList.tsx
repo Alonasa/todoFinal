@@ -73,12 +73,12 @@ export const TodoList = (props: propsType) => {
   }
   
   return (
-	<Box width={250}>
+	<Box width={250} mb={20}>
 	  <Grid container xs={12} direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'center'}>
-		<h3>
+		<b>
 		  <EditableSpan title={props.title}
 						callback={(title) => updateTaskHandler}/>
-		</h3>
+		</b>
 		<IconButton onClick={removeTodolistHandler} color='secondary' size={'small'}>
 		  <DeleteOutline/>
 		</IconButton>

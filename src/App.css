@@ -53,3 +53,7 @@
   display: flex;
   align-items: flex-start;
 }
+
+.MuiIconButton-root {
+  align-self: baseline;
+}

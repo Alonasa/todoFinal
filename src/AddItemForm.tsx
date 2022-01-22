@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Box, Button, Grid, Input, MuiThemeProvider} from '@material-ui/core';
-import {theme} from './theme';
+import {Box, Grid, IconButton, TextField} from '@material-ui/core';
+import {AddBox} from '@material-ui/icons';
 
 
 type propsType = {
@@ -32,20 +32,23 @@ const AddItemForm = (props: propsType) => {
 	setTitle(e.currentTarget.value)
   }
   return (
-	  <Box mt={10} mb={10} width={250}>
+	  <Box mt={10} mb={15} width={250}>
 		<Grid container xs={12} spacing={2} direction={'row'} wrap={"wrap"}>
 		  <Grid container direction={'row'} wrap={'nowrap'}>
-			<Input
+			<TextField
+			  variant={'outlined'}
 			  value={title}
 			  onChange={onChangeHandler}
 			  onKeyPress={onKeyHandler} id="outlined-basic"
 			  placeholder="Add task name here"
 			  color="secondary" type="text" autoComplete={'off'}
+			  error={!!error}
+			  helperText={error}
 			/>
-			<Button variant="contained" color="secondary"
-					onClick={addTask}>+</Button>
+			<IconButton color="secondary" onClick={addTask}>
+			  <AddBox/>
+			</IconButton>
 		  </Grid>
-		  {error ? <span className="error__message">{error}</span> : ''}
 		</Grid>
 	  </Box>
   );
