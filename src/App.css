@@ -1,9 +1,3 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -19,34 +13,38 @@
   color: #61dafb;
 }
 
-.todo {
+.li-container {
   width: 250px;
-  margin: 20px;
-  text-align: left;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
 }
 
-.todo__header {
+.li-container li {
+  margin-bottom: 10px;
   display: flex;
-  align-items: baseline;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .error {
-  border: 2px solid red
+  border: 2px solid #0D6F6FFF
 }
 
 .error__message {
-  color: red;
+  color: #0D6F6FFF;
 }
 
 .filter__selected {
-  background-color: darkcyan;
+  background-color: #0D6F6FFF;
   color: wheat;
 }
 
 .task__checked {
   opacity: 0.6;
-  text-decoration: line-through darkcyan;
+  text-decoration: line-through #0D6F6FFF;
   font-style: italic;
 }
 
@@ -54,4 +52,8 @@
   padding: 15px 0;
   display: flex;
   align-items: flex-start;
+}
+
+.MuiIconButton-root {
+  align-self: baseline;
 }

@@ -1,7 +1,10 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {Box, Grid, IconButton, TextField} from '@material-ui/core';
+import {AddBox} from '@material-ui/icons';
+
 
 type propsType = {
-  addTask: (title: string)=> void
+  addTask: (title: string) => void
 }
 
 const AddItemForm = (props: propsType) => {
@@ -29,13 +32,25 @@ const AddItemForm = (props: propsType) => {
 	setTitle(e.currentTarget.value)
   }
   return (
-	<div className={"addInput"}>
-	  <input type="text" value={title}
-			 onChange={onChangeHandler}
-			 onKeyPress={onKeyHandler}/>
-	  {error ? <span className="error__message">{error}</span> : ''}
-	  <button onClick={addTask}>+</button>
-	</div>
+	  <Box mt={10} mb={15} width={250}>
+		<Grid container xs={12} spacing={2} direction={'row'} wrap={"wrap"}>
+		  <Grid container direction={'row'} wrap={'nowrap'}>
+			<TextField
+			  variant={'outlined'}
+			  value={title}
+			  onChange={onChangeHandler}
+			  onKeyPress={onKeyHandler} id="outlined-basic"
+			  placeholder="Add task name here"
+			  color="secondary" type="text" autoComplete={'off'}
+			  error={!!error}
+			  helperText={error}
+			/>
+			<IconButton color="secondary" onClick={addTask}>
+			  <AddBox/>
+			</IconButton>
+		  </Grid>
+		</Grid>
+	  </Box>
   );
 };
 

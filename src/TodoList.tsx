@@ -1,6 +1,15 @@
+import {
+  Box,
+  Button, ButtonGroup,
+  Checkbox,
+  Grid,
+  IconButton,
+  Input
+} from '@material-ui/core';
 import React, {ChangeEvent} from 'react';
 import AddItemForm from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
+import {DeleteOutline, DeleteTwoTone} from '@material-ui/icons';
 
 type propsType = {
   id: string
@@ -40,7 +49,7 @@ export const TodoList = (props: propsType) => {
   }
   
   const filterStylesHandler = (value: filterType) => {
-	return props.filter === value ? 'filter__selected' : ' '
+	return props.filter === value ? 'contained' : 'outlined'
   }
   
   const taskStyleHandler = (t: boolean) => {
@@ -59,17 +68,23 @@ export const TodoList = (props: propsType) => {
 	props.updateTodolist(props.id, title)
   }
   
+  const removeTodolistHandler = () => {
+	props.removeTodolist(props.id)
+  }
+  
   return (
-	<div className={'todo'}>
-	  <div className={'todo__header'}>
-		<h3>
+	<Box width={250} mb={20}>
+	  <Grid container xs={12} direction={'row'} wrap={'nowrap'} justifyContent={'space-between'} alignItems={'center'}>
+		<b>
 		  <EditableSpan title={props.title}
 						callback={(title) => updateTaskHandler}/>
-		</h3>
-		<button onClick={() => props.removeTodolist(props.id)}>x</button>
-	  </div>
+		</b>
+		<IconButton onClick={removeTodolistHandler} color='secondary' size={'small'}>
+		  <DeleteOutline/>
+		</IconButton>
+	  </Grid>
 	  <AddItemForm addTask={addTaskHandler}/>
-	  <ul>{
+	  <ul className={'li-container'}>{
 		props.tasks.map(t => {
 		  const onClickHandler = () => {
 			props.taskRemover(props.id, t.id)
@@ -78,25 +93,28 @@ export const TodoList = (props: propsType) => {
 			props.changeHandler(props.id, t.id, e.currentTarget.checked)
 		  }
 		  return <li key={t.id} className={taskStyleHandler(t.isDone)}>
-			<input type="checkbox" checked={t.isDone}
-				   onChange={changeStatusHandler}/>
+			<Checkbox checked={t.isDone}
+					  onChange={changeStatusHandler}  />
 			<EditableSpan title={t.title}
 						  callback={(title) => updateTodolistHandler(title)}/>
-			<button onClick={onClickHandler}>x</button>
+			<IconButton onClick={onClickHandler} color='secondary' size={'small'}>
+			  <DeleteOutline/>
+			</IconButton>
 		  </li>
 		})}
 	  </ul>
 	  <div>
-		<button className={filterStylesHandler('All')}
-				onClick={() => onFilterHandler('All')}>All
-		</button>
-		<button className={filterStylesHandler('Active')}
-				onClick={() => onFilterHandler('Active')}>Active
-		</button>
-		<button className={filterStylesHandler('Finished')}
-				onClick={() => onFilterHandler('Finished')}>Finished
-		</button>
+		<ButtonGroup>
+		  <Button variant={filterStylesHandler('All')}
+				  onClick={() => onFilterHandler('All')} color={'secondary'}>All</Button>
+		  <Button variant={filterStylesHandler('Active')} className={filterStylesHandler('Active')}
+				  onClick={() => onFilterHandler('Active')} color={'secondary'}>Active
+		  </Button>
+		  <Button variant={filterStylesHandler('Finished')} className={filterStylesHandler('Finished')}
+				  onClick={() => onFilterHandler('Finished')} color={'secondary'}>Finished
+		  </Button>
+		</ButtonGroup>
 	  </div>
-	</div>
+	</Box>
   )
 }
