@@ -82,7 +82,7 @@ export const TodoList = (props: propsType) => {
 			<EditableSpan title={props.title}
 						  callback={(title) => updateTaskHandler}/>
 		  </b>
-		  <IconButton onClick={removeTodolistHandler} color="secondary"
+		  <IconButton onClick={removeTodolistHandler} color="primary"
 					  size={'small'}>
 			<DeleteOutline/>
 		  </IconButton>
@@ -99,10 +99,10 @@ export const TodoList = (props: propsType) => {
 			  }
 			  return <li key={t.id} className={taskStyleHandler(t.isDone)}>
 				<Checkbox checked={t.isDone}
-						  onChange={changeStatusHandler}/>
+						  onChange={changeStatusHandler} color="primary"/>
 				<EditableSpan title={t.title}
 							  callback={(title) => updateTodolistHandler(title)}/>
-				<IconButton onClick={onClickHandler} color="secondary"
+				<IconButton onClick={onClickHandler} color="primary"
 							size={'small'}>
 				  <DeleteOutline/>
 				</IconButton>
@@ -115,15 +115,15 @@ export const TodoList = (props: propsType) => {
 		<ButtonGroup>
 		  <Button variant={filterStylesHandler('All')}
 				  onClick={() => onFilterHandler('All')}
-				  color={'secondary'}>All</Button>
+				  color={'primary'}>All</Button>
 		  <Button variant={filterStylesHandler('Active')}
 				  className={filterStylesHandler('Active')}
-				  onClick={() => onFilterHandler('Active')} color={'secondary'}>Active
+				  onClick={() => onFilterHandler('Active')} color={'primary'}>Active
 		  </Button>
 		  <Button variant={filterStylesHandler('Finished')}
 				  className={filterStylesHandler('Finished')}
 				  onClick={() => onFilterHandler('Finished')}
-				  color={'secondary'}>Finished
+				  color={'primary'}>Finished
 		  </Button>
 		</ButtonGroup>
 	  </Box>

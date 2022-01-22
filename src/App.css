@@ -1,3 +1,7 @@
+html {
+  --white: white
+}
+
 .li-container {
   padding: 0;
 }

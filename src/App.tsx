@@ -20,6 +20,7 @@ import {
 } from './TaskReducer';
 import {Box, Grid, MuiThemeProvider} from '@material-ui/core';
 import {theme} from './theme';
+import {ResponsiveAppBar} from './Components/ResponsiveAppBar';
 
 
 function App() {
@@ -84,35 +85,36 @@ function App() {
   
   return (
     <MuiThemeProvider theme={theme}>
-      <Box m={15}>
-        <Grid container className="App" direction={'row'} wrap={'wrap'}
-              align-items={'center'} justifyContent={'space-around'}>
-          <AddItemForm addTask={addTodolistHandler}/>
-          {todoLists.map(tl => {
-            let filteredTasks = task[tl.id]
-            if (tl.filter === 'Active') {
-              filteredTasks = filteredTasks.filter(t => !t.isDone)
-            }
-            if (tl.filter === 'Finished') {
-              filteredTasks = filteredTasks.filter(t => t.isDone)
-            }
-            return (
-              <TodoList key={tl.id}
-                        id={tl.id}
-                        title={tl.title}
-                        tasks={filteredTasks}
-                        taskRemover={removeTask}
-                        filteredTasks={changeFilter}
-                        addTask={addTask}
-                        filter={tl.filter}
-                        changeHandler={changeStatus}
-                        removeTodolist={removeTodolist}
-                        updateTask={updateTask}
-                        updateTodolist={updateTodolist}
-              />)
-          })}
-        </Grid>
-      </Box>
+        <ResponsiveAppBar/>
+        <Box m={2} marginTop={15}>
+          <Grid container className="App" direction={'row'} wrap={'wrap'}
+                align-items={'center'} justifyContent={'space-around'}>
+            <AddItemForm addTask={addTodolistHandler}/>
+            {todoLists.map(tl => {
+              let filteredTasks = task[tl.id]
+              if (tl.filter === 'Active') {
+                filteredTasks = filteredTasks.filter(t => !t.isDone)
+              }
+              if (tl.filter === 'Finished') {
+                filteredTasks = filteredTasks.filter(t => t.isDone)
+              }
+              return (
+                <TodoList key={tl.id}
+                          id={tl.id}
+                          title={tl.title}
+                          tasks={filteredTasks}
+                          taskRemover={removeTask}
+                          filteredTasks={changeFilter}
+                          addTask={addTask}
+                          filter={tl.filter}
+                          changeHandler={changeStatus}
+                          removeTodolist={removeTodolist}
+                          updateTask={updateTask}
+                          updateTodolist={updateTodolist}
+                />)
+            })}
+          </Grid>
+        </Box>
     </MuiThemeProvider>
   );
 }

@@ -31,7 +31,7 @@ export const EditableSpan = ({title, ...props}: propsType) => {
   
   return (
 	edit
-	  ? <TextField variant={'outlined'} color={'secondary'} type={'small'}
+	  ? <TextField variant={'outlined'} color={'primary'} type={'small'}
 				   value={newTitle} autoFocus onChange={onChangeHandler}
 				   onBlur={editableOff} error={!!error} helperText={error}/>
 	  : <span onDoubleClick={editableOn}>{newTitle}</span>
