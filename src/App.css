@@ -1,18 +1,3 @@
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 .li-container {
   padding: 0;
 }
@@ -25,21 +10,10 @@
   align-items: center;
 }
 
-.filter__selected {
-  background-color: #0D6F6FFF;
-  color: wheat;
-}
-
 .task__checked {
   opacity: 0.6;
   text-decoration: line-through #0D6F6FFF;
   font-style: italic;
-}
-
-.addInput {
-  padding: 15px 0;
-  display: flex;
-  align-items: flex-start;
 }
 
 .MuiIconButton-root {
