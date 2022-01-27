@@ -41,11 +41,11 @@ const AddItemForm = (props: propsType) => {
 			  onChange={onChangeHandler}
 			  onKeyPress={onKeyHandler} id="outlined-basic"
 			  placeholder="Add task name here"
-			  color="secondary" type="text" autoComplete={'off'}
+			  color="primary" type="text" autoComplete={'off'}
 			  error={!!error}
 			  helperText={error}
 			/>
-			<IconButton color="secondary" onClick={addTask}>
+			<IconButton color="primary" onClick={addTask}>
 			  <AddBox/>
 			</IconButton>
 		  </Grid>
